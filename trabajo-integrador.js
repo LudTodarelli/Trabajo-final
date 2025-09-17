@@ -230,4 +230,32 @@ function borrarLibro(id) {
 
 console.log(borrarLibro(1));
 
+/2) d).
+// Desarrollar una función borrarLibro(id) que elimine el libro que se le pase por parámetro.
+
+function borrarLibro(id) {
+  let arrayLibroEliminado = [];
+  arrayLibroEliminado = libros.filter(libro => libro.id !== id);
+  return arrayLibroEliminado;
+}
+
+console.log(borrarLibro(1));
+
+// 3 a) Implementar una función registrarUsuario(nombre, email) que
+// agregue un nuevo usuario al array usuarios.
+
+function registrarUsuario (id, nombre, mail, librosPrestados ) {
+    let nuevoUsuario = {
+        id: id,
+        nombre: nombre,
+        mail: mail,
+        librosPrestados: librosPrestados,       
+    }
+    usuarios.push(nuevoUsuario);
+}
+
+registrarUsuario(6, "Franco Ladrón de Guevara", "francoldg@gmail.com", []);
+
+console.log(usuarios);
+
 
