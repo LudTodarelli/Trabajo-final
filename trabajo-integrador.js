@@ -138,6 +138,7 @@ let usuarios = [
 //  que agregue un nuevo libro al array libros.
 
 function agregarLibro(id, titulo, autor, anio, genero, disponible) {
+  
   let nuevoLibro = {
     id: id,
     titulo: titulo,
@@ -321,20 +322,6 @@ console.log(prestarLibro(2, 3));
   // libro como disponible y lo elimine de la lista de libros prestados del usuario.
 
 
-//   function devolverLibro(idLibro, idUsuario) {
-//     let buscarLibro = libros.find((libro) => libro.id === idLibro);
-//   let buscarUsuario = usuarios.find((usuario) => usuario.id === idUsuario);
-// console.log(buscarLibro);
-//   if (buscarLibro.disponible == false) {
-//   buscarLibro.disponible == true;
-//   buscarUsuario.librosPrestados.pop(id.libro);
-//   console.log(buscarUsuario);
-// }  
-
-// }
-
-// console.log(devolverLibro(2,3));
-
 
 
 function devolverLibro(idLibro, idUsuario) {
@@ -465,32 +452,185 @@ librosConPalabrasEnTitulo();
 // Año de publicación más frecuente.
 
 function calcularEstadisticas() {
-// function promedio(libro) {
-//    let añosPublicacion = libros.map((libro) => libro.anio)
-//   let suma = libros.reduce((acc, num) => acc + num, 0);
-//   return Math.round(suma / libro.length); 
-// }
+  let aniosPublicacion = libros.map((libro) => libro.anio);
+  console.log(aniosPublicacion);
+  // ✓ Promedio de años de publicación de los libros.
+  let sumarAnios = aniosPublicacion.reduce(
+    (acumulador, actual) => acumulador + actual,
+    0
+  );
+  console.log(sumarAnios);
+  let promedioDeAñosPublicacion = sumarAnios / aniosPublicacion.length;
+  let promedioRedondeado = Math.round(promedioDeAñosPublicacion);
 
-// console.log(promedio(libros)); // 13
 
+  //******************************NOS FALTA RESOLVER ESTE: */
+// ✓ Año de publicación más frecuente.
 
-// }
+// function encontrarAnioMasFrecuente(anios) {
+//   let maxRepeticiones = 0;
+//   let anioMasFrecuente = 0;
 
-const anios = libros;
+//   for (let i = 0; i < aniosPublicacion.length; i++) {
+//     let contador = 0;
 
-// 1. Sumar todos los años
-const suma = anios.reduce((acumulador, actual) => acumulador + actual, 0);
+//     for (let j = 0; j < aniosPublicacion.length; j++) {
+//       if (libros.anio[i] === libros.anio[j]) {
+//         contador++;
+//       }
+//     }
 
-// 2. Calcular el promedio
-const promedio = suma / anios.length;
+//     if (contador > maxRepeticiones) {
+//       maxRepeticiones = contador;
+//       anioMasFrecuente = libros.anio[i];
+//     }
+//   }
+// console.log(anioMasFrecuente);
 
-// 3. Opcional: redondear usando Math (por ejemplo, Math.round)
-const promedioRedondeado = Math.round(promedio);
+  
+// console.log(encontrarAnioMasFrecuente());
 
-console.log("Promedio exacto:", promedio);            // 6.6
-console.log("Promedio redondeado:", promedioRedondeado); // 7
+// Diferencia en años entre el libro más antiguo y el más nuevo. 
+let ordenarLibrosAnios = libros.sort((a, b) => a.anio - b.anio);
+console.log(ordenarLibrosAnios)
+let primerAnio = ordenarLibrosAnios.shift()
+console.log(primerAnio.anio)
+let ultimoAnio = ordenarLibrosAnios.pop()
+console.log(ultimoAnio.anio)
+let restaDeAnios = ultimoAnio.anio - primerAnio.anio
 
+  return promedioRedondeado,
+  restaDeAnios
 }
+console.log(calcularEstadisticas());
 
 calcularEstadisticas();
+
+// 8. Manejo de Cadenas 
+// a) Crear una función normalizarDatos() que utilice métodos de strings 
+// para: 
+// ✓ Convertir todos los títulos a mayúsculas. 
+// ✓ Eliminar espacios en blanco al inicio y final de los nombres de 
+// autores. 
+// ✓ Formatear los emails de los usuarios a minúsculas.
+
+function normalizarDatos() {
+  // ✓ Convertir todos los títulos a mayúsculas. 
+  let titulosAMinuscula = libros.map((libro) => libro.titulo.toLowerCase())
+  console.log(titulosAMinuscula)
+  // ✓ Eliminar espacios en blanco al inicio y final de los nombres de 
+// autores. 
+let sinEspacios = libros.map((libro) => libro.autor.trim())
+console.log(sinEspacios)
+// ✓ Formatear los emails de los usuarios a minúsculas.
+let emailAMinuscula = usuarios.map((usuario) => usuario.email.toLowerCase())
+console.log(emailAMinuscula)
+}
+normalizarDatos()
+
+
+// 9. Interfaz de Usuario por Consola
+// a)
+// Implementar una función menuPrincipal() que muestre un menú de opciones al usuario y permita interactuar con el sistema utilizando prompt().
+
+// b)
+// El menú debe incluir opciones para todas las funcionalidades anteriores y utilizar estructuras de control (if, switch, ciclos) para manejar la lógica.
+
+
+// agregarLibro
+// buscarLibro
+// ordenarLibros
+// borrarLibro
+// registrarUsuario
+// mostrarTodosLosUsuarios 
+// buscarUsuario -- Lud
+// borrarUsuario 
+// prestarLibro
+// devolverLibro
+// generarReporteLibros()
+// librosConPalabrasEnTitulo()
+//calcularEstadistica
+// normalizarDatos
+
+function menuPrincipal() {
+  let opcion 
+  do {
+   opcion = prompt(`Seleccione una opción
+1.agregarLibro,
+2.buscarLibro,
+3.ordenarLibros,
+4.borrarLibro,
+5.registrarUsuario,
+6.mostrarTodosLosUsuarios, 
+7.buscarUsuario,
+8.borrarUsuario, 
+9.prestarLibro,
+10.devolverLibro,
+11.generarReporteLibros,
+12.librosConPalabrasEnTitulo,
+13.calcularEstadisticas,
+14.normalizarDatos,
+15.salir`);
+
+    switch(opcion) {
+      case "1":
+  const id = prompt(" Ingresa el ID del libro:");
+  const titulo = prompt("Ingresa el titulo del libro:");
+  const autor = prompt(" Ingresa el autor del libro:");
+  const anio = prompt(" Ingresa el anio de publicacion:");
+  const genero = prompt("Ingresa el genero del libro:");
+  const disponible = prompt("Esta disponible? (true/false)");
+
+  // agregarLibro(id, titulo, autor, anio, genero, disponible);
+console.log(agregarLibro(id, titulo, autor, anio, genero, disponible));
+        break;
+      case "2":
+        buscarLibro();
+        break;
+      case "3":
+        ordenarLibros();
+        break;
+      case "4":
+        generarReporteLibros();
+        break;
+      case "5":
+        registrarUsuario();
+       break;
+      case "6":
+        mostrarTodosLosUsuarios();
+        break;
+      case "7":
+        buscarUsuario();
+        break;
+      case "8":
+        borrarUsuario();
+        break;
+      case "9":
+        prestarLibro();
+        break;
+      case "10":
+        devolverLibro ();
+        break;
+      case "11":
+        generarReporteLibros();
+        break;
+      case "12":
+        librosConPalabrasEnTitulo();
+        break;
+      case "13":
+        calcularEstadisticas();
+        break;
+      case "14":
+        normalizarDatos();
+        break;
+      case "15":
+        console.log("¡Hasta luego!");
+        break;
+      default:
+        console.log("Opción inválida");
+    }
+  } while (opcion !== "15");
+}
+
+menuPrincipal();
 
