@@ -534,14 +534,13 @@ console.log(
 // EXPLICACIÓN: La función "normalizarDatos" tiene como objetivo estandarizar la información provista por el usuario. Por este motivo, utilizamos el método map para poder recorrer el array con el fin de que este sea modificado de acuerdo a los métodos de strings que se amoldan a lo solicitado: que los títulos pasen a estar en mayúscula (toUpperCase), que se eliminen posibles espacios en blanco al inicio y final de los nombres de los autores (trim) y formatear los emails a minúscula(toLowerCase).
 
 function normalizarDatos() {
-  // ✓ Convertir todos los títulos a mayúsculas.
+ 
   let titulosAMayuscula = libros.map((libro) => libro.titulo.toUpperCase());
   console.log(titulosAMayuscula);
-  // ✓ Eliminar espacios en blanco al inicio y final de los nombres de
-  // autores.
+ 
   let sinEspacios = libros.map((libro) => libro.autor.trim());
   console.log(sinEspacios);
-  // ✓ Formatear los emails de los usuarios a minúsculas.
+  
   let emailAMinuscula = usuarios.map((usuario) => usuario.email.toLowerCase());
   console.log(emailAMinuscula);
 }
@@ -554,7 +553,7 @@ normalizarDatos();
 // b)
 // El menú debe incluir opciones para todas las funcionalidades anteriores y utilizar estructuras de control (if, switch, ciclos) para manejar la lógica.
 
-//EXPLICACIÓN: La función "menuPrincipal" se diseñó para que el usuario pueda interactuar con el sistema de la biblioteca. Se utilizó un bucle do while para que el menú se muestre al menos una vez y se repita hasta que el usuario decida salir. Decidimos utilizar un switch para evaluar la opción que el usuario ingresa a través de la función prompt. Cada case dentro del switch llama a la función correspondiente, como agregarLibro o buscarUsuario, y el break detiene la ejecución. De esta manera, el código cumple con el requisito de ofrecerle al usuario disponibilidad total sobre el sistema y la información que el él reside.
+//EXPLICACIÓN: La función "menuPrincipal" se diseñó para que el usuario pueda interactuar con el sistema de la biblioteca de forma más accesible y ordenada. Se utilizó un bucle do while para que el menú se muestre al menos una vez y se repita hasta que el usuario decida salir. Decidimos utilizar un switch para evaluar la opción que el usuario ingresa a través de la función prompt. Cada case dentro del switch llama a la función correspondiente, como agregarLibro o buscarUsuario, y el break detiene la ejecución. De esta manera, el código cumple con el requisito de ofrecerle al usuario disponibilidad total sobre el sistema y la información que en él reside.
 
 function menuPrincipal() {
   let opcion;
